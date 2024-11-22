@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    <style>
+        /* Reset styling */
+        body, h1, p, a {
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #74ebd5, #9face6);
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            width: 100%;
+        }
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: #444;
+        }
+        p {
+            margin-bottom: 20px;
+            font-size: 1rem;
+            color: #666;
+        }
+        a {
+            display: inline-block;
+            text-decoration: none;
+            color: white;
+            background: #6c63ff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+        a:hover {
+            background: #5753d9;
+        }
+        .links {
+            display: flex;
+            justify-content: space-around;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to the Employee Management System</h1>
+        <p>Please log in to access your account or sign up if you're a new employee.</p>
+        <div class="links">
+            <!-- Employee Login Link -->
+            <a href="/login">Login</a>
+            <!-- Employee Sign Up Link -->
+            <a href="/signup">Sign Up</a>
+            <!-- Owner Login Link -->
+              <!-- Added Owner Login -->
+        </div>
+    </div>
+</body>
+</html>

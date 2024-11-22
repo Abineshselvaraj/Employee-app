@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Profile</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+
+        .profile-info, .edit-form {
+            margin-top: 20px;
+        }
+
+        .profile-info p {
+            font-size: 1.1em;
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        .edit-form input, .edit-form textarea, .edit-form button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .edit-form input[type="file"] {
+            padding: 5px;
+        }
+
+        .edit-form button {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            border: none;
+            font-size: 1.1em;
+        }
+
+        .edit-form button:hover {
+            background-color: #45a049;
+        }
+
+        .profile-pic {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .profile-pic img {
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .btn-container button {
+            background-color: #008CBA;
+            color: white;
+            padding: 12px 20px;
+            font-size: 1em;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 10px;
+        }
+
+        .btn-container button:hover {
+            background-color: #007B9A;
+        }
+
+        .logout-btn {
+            background-color: #f44336;
+        }
+
+        .logout-btn:hover {
+            background-color: #e53935;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Employee Profile</h1>
+
+        <div class="profile-pic">
+            {% if profile_pic %}
+                <img src="{{ url_for('static', filename=profile_pic.split('static/')[1]) }}" alt="Profile Picture">
+            {% else %}
+                <p>No profile picture uploaded.</p>
+            {% endif %}
+        </div>
+
+        <form action="/employee_profile" method="POST" enctype="multipart/form-data">
+            {% if not editable %}
+                <div class="profile-info">
+                    <p><strong>Full Name:</strong> {{ employee.name }}</p>
+                    <p><strong>Date of Birth:</strong> {{ employee.dob }}</p>
+                    <p><strong>Address:</strong> {{ employee.address }}</p>
+                </div>
+
+                <div class="btn-container">
+                    <button type="submit" name="edit" value="true">Edit Profile</button>
+                </div>
+
+            {% else %}
+                <div class="edit-form">
+                    <label for="name">Full Name:</label>
+                    <input type="text" id="name" name="name" value="{{ employee.name }}" required><br>
+
+                    <label for="dob">Date of Birth:</label>
+                    <input type="date" id="dob" name="dob" value="{{ employee.dob }}" required><br>
+
+                    <label for="address">Address:</label>
+                    <textarea id="address" name="address" rows="3" required>{{ employee.address }}</textarea><br>
+
+                    <label for="profile_pic">Profile Picture:</label>
+                    <input type="file" id="profile_pic" name="profile_pic"><br>
+
+                    <button type="submit">Save Changes</button>
+                </div>
+            {% endif %}
+        </form>
+
+        <div class="btn-container">
+            <a href="{{ url_for('logout') }}">
+                <button class="logout-btn">Logout</button>
+            </a>
+        </div>
+    </div>
+
+</body>
+</html>
